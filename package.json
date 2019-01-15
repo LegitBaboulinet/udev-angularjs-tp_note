@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/LegitBaboulinet/udev-angularjs-tp_note#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.6.3",
     "angular": "^1.7.5",
     "bootstrap": "^4.2.1"
   }

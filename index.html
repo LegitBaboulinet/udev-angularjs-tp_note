@@ -11,6 +11,13 @@
     <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
+    <!-- Font-awesome -->
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" type="text/css" />
+    <script type="text/javascript" src="node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/content.css" type="text/css" />
+
     <!-- Angular -->
     <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
 
@@ -82,12 +89,14 @@
             <div class="card-footer">
                 <div class="text-right">
                     <button class="btn btn-outline-primary" ng-disabled="!vm.isValid()" ng-if="!vm.edit" ng-click="vm.addPerson()">
+                        <i class="fas fa-plus mr-1"></i>
                         Ajouter la personne
                     </button>
                     <button class="btn btn-danger" ng-if="vm.edit" ng-click="vm.cancelEdit()">
-                        Annuler les modifications
+                        <i class="fas fa-ban icon"></i>
                     </button>
-                    <button class="btn btn-primary" ng-disabled="!vm.isValid()" ng-if="vm.edit" ng-click="vm.editPerson()">
+                    <button class="btn btn-success" ng-disabled="!vm.isValid()" ng-if="vm.edit" ng-click="vm.editPerson()">
+                        <i class="fas fa-plus mr-1"></i>
                         Modifier la personne
                     </button>
                 </div>
@@ -97,8 +106,8 @@
         <!-- Tableau des personnes -->
         <div class="mt-4">
             <b>Liste des étudiants / Intervenants</b>
-            <table class="table mt-2">
-                <thead class="table-head">
+            <table class="table table-responsive-lg mt-2 table-hover table-bordered text-center">
+                <thead class="table-head thead-dark">
                     <tr>
                         <th>Nom et prénom</th>
                         <th>Role</th>
@@ -112,11 +121,11 @@
                         <td>{{ person.role }}</td>
                         <td>{{ person.promotion | promotion }}</td>
                         <td>
-                            <button class="btn btn-outline-secondary" ng-click="vm.startEditPerson($index)">
-                                Modifier
+                            <button class="btn btn-secondary" ng-click="vm.startEditPerson($index)">
+                                <i class="fas fa-pen icon"></i>
                             </button>
                             <button class="btn btn-danger" ng-click="vm.removePerson($index)">
-                                Supprimer
+                                <i class="fas fa-trash icon"></i>
                             </button>
                         </td>
                     </tr>
