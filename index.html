@@ -1,0 +1,130 @@
+<html>
+
+<head>
+
+    <!-- Détails de la page -->
+    <meta charset="UTF-8">
+    <title>Gestion de l'école</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Angular -->
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+
+    <!-- Modules -->
+    <script type="text/javascript" src="app/school.module.js"></script>
+
+    <!-- Services -->
+    <script type="text/javascript" src="app/services/promotion.service.js"></script>
+    <script type="text/javascript" src="app/services/person.service.js"></script>
+
+    <!-- Controlleurs -->
+    <script type="text/javascript" src="app/controllers/school.controller.js"></script>
+
+    <!-- Filtres -->
+    <script type="text/javascript" src="app/filters/promotion.filter.js"></script>
+
+</head>
+
+<body ng-app="SchoolApp">
+    
+    <!-- Conteneur du controlleur -->
+    <div class="container mt-4" ng-controller="SchoolController as vm">
+
+        <div class="card">
+            <div class="card-header text-center">
+                <b>Liste des étudiants / intervenants</b>
+            </div>
+            <div class="card-body">
+
+                <!-- Formulaire d'ajout de personne -->
+                <form class="form">
+
+                    <!-- Champ du nom -->
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" class="form-control" ng-model="vm.currentPerson.lastName" />
+                    </div>
+        
+                    <!-- Champ du prénom -->
+                    <div class="form-group">
+                        <label>Prénom</label>
+                        <input type="text" class="form-control" ng-model="vm.currentPerson.firstName" />
+                    </div> 
+                    
+                    <!-- Champ du nom -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label>Role</label>
+                        </div>
+                        <div>
+                            <input type="radio" value="Elève" ng-model="vm.currentPerson.role" />
+                            <label>Elève</label>
+                        </div>
+                        <div>
+                            <input type="radio" value="Intervenant" ng-model="vm.currentPerson.role" ng-blur="vm.currentPerson.promotion = null" />
+                            <label>Intervenant</label>
+                        </div>
+                    </div>
+
+                    <!-- Champ de la promotion -->
+                    <div class="form-group" ng-if="vm.currentPerson.role == 'Elève'">
+                        <label>Promotion</label>
+                        <select class="custom-select" ng-model="vm.currentPerson.promotion">
+                            <option ng-repeat="promotion in vm.promotions" value="{{ promotion }}">{{ promotion }}</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="text-right">
+                    <button class="btn btn-outline-primary" ng-disabled="!vm.isValid()" ng-if="!vm.edit" ng-click="vm.addPerson()">
+                        Ajouter la personne
+                    </button>
+                    <button class="btn btn-danger" ng-if="vm.edit" ng-click="vm.cancelEdit()">
+                        Annuler les modifications
+                    </button>
+                    <button class="btn btn-primary" ng-disabled="!vm.isValid()" ng-if="vm.edit" ng-click="vm.editPerson()">
+                        Modifier la personne
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau des personnes -->
+        <div class="mt-4">
+            <b>Liste des étudiants / Intervenants</b>
+            <table class="table mt-2">
+                <thead class="table-head">
+                    <tr>
+                        <th>Nom et prénom</th>
+                        <th>Role</th>
+                        <th>Promotion</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr ng-repeat="person in vm.people">
+                        <td>{{ person.lastName }} {{ person.firstName }}</td>
+                        <td>{{ person.role }}</td>
+                        <td>{{ person.promotion | promotion }}</td>
+                        <td>
+                            <button class="btn btn-outline-secondary" ng-click="vm.startEditPerson($index)">
+                                Modifier
+                            </button>
+                            <button class="btn btn-danger" ng-click="vm.removePerson($index)">
+                                Supprimer
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

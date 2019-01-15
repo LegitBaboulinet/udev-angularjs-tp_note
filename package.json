@@ -1,0 +1,23 @@
+{
+  "name": "tp_note",
+  "version": "1.0.0",
+  "description": "Le TP noté Angular JS pour l'EPSI Arras",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LegitBaboulinet/udev-angularjs-tp_note.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LegitBaboulinet/udev-angularjs-tp_note/issues"
+  },
+  "homepage": "https://github.com/LegitBaboulinet/udev-angularjs-tp_note#readme",
+  "dependencies": {
+    "angular": "^1.7.5",
+    "bootstrap": "^4.2.1"
+  }
+}
