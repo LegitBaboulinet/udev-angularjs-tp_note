@@ -6,13 +6,20 @@
         .service('PersonService', PersonService)
 
     /** @ngInject */
-    function PersonService(){
+    function PersonService($window){
         var service = this;
         
         /** Variables */
         service.people = [];
 
         /** Fonctions */
+        function save() {
+            localStorage.setItem('people', angular.toJson(service.people));
+        }
+        service.load = () => {
+            var people = angular.fromJson(localStorage.getItem('people'));
+            service.people = (people) ? people : [];
+        }
         service.get = () => {
             return service.people;
         }
@@ -24,12 +31,15 @@
                 promotion: promotion
             }
             service.people.push(person);
+            save();
         }
         service.remove = (index) => {
             service.people.splice(index, 1);
+            save();
         }
         service.edit = (index, person) => {
             service.people[index] = person;
+            save();
         }
     }
 

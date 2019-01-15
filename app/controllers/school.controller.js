@@ -19,6 +19,7 @@
         /** Fonctions */
         vm.$onInit = () => {
             vm.promotions = PromotionService.get();
+            PersonService.load();
             vm.people = PersonService.get();
         }
         vm.isValid = () => {
