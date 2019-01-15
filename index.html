@@ -53,13 +53,13 @@
                     <!-- Champ du nom -->
                     <div class="form-group">
                         <label>Nom</label>
-                        <input type="text" class="form-control" ng-model="vm.currentPerson.lastName" />
+                        <input type="text" class="form-control" ng-model="vm.currentPerson.lastName" maxlength="100" />
                     </div>
         
                     <!-- Champ du prénom -->
                     <div class="form-group">
                         <label>Prénom</label>
-                        <input type="text" class="form-control" ng-model="vm.currentPerson.firstName" />
+                        <input type="text" class="form-control" ng-model="vm.currentPerson.firstName" maxlength="100" />
                     </div> 
                     
                     <!-- Champ du nom -->
@@ -68,7 +68,7 @@
                             <label>Role</label>
                         </div>
                         <div>
-                            <input type="radio" value="Elève" ng-model="vm.currentPerson.role" />
+                            <input type="radio" value="Elève" ng-model="vm.currentPerson.role" maxlength="100" />
                             <label>Elève</label>
                         </div>
                         <div>
@@ -124,7 +124,7 @@
                             <button class="btn btn-secondary" ng-click="vm.startEditPerson($index)">
                                 <i class="fas fa-pen icon"></i>
                             </button>
-                            <button class="btn btn-danger" ng-click="vm.removePerson($index)">
+                            <button class="btn btn-danger" ng-click="vm.removePerson($index)" ng-disabled="vm.edit">
                                 <i class="fas fa-trash icon"></i>
                             </button>
                         </td>
