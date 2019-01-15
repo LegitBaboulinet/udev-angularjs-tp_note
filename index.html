@@ -106,7 +106,7 @@
         <!-- Tableau des personnes -->
         <div class="mt-4">
             <b>Liste des étudiants / Intervenants</b>
-            <table class="table table-responsive-lg mt-2 table-hover table-bordered text-center">
+            <table class="table table-responsive-lg mt-2 table-hover table-bordered text-center" ng-if="vm.people.length > 0">
                 <thead class="table-head thead-dark">
                     <tr>
                         <th>Nom et prénom</th>
@@ -131,6 +131,9 @@
                     </tr>
                 </tbody>
             </table>
+            <p ng-if="vm.people.length == 0">
+                Il n'y a rien à afficher
+            </p>
         </div>
     </div>
 
